@@ -1,6 +1,9 @@
 # VR-feedback
 Repository for the master thesis with working title 'Visualization of neurofeedback in VR'
 
+## Start the ssh-agent in the background
+eval `ssh-agent -s`
+
 ## Experiment Protocol
 EEG Sports MI:
 	Each type of MI 15 times per run, 4 runs
