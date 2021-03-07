@@ -18,6 +18,7 @@ public class ScenarioController : MonoBehaviour
 	public GameObject arrowLeft;
 	public GameObject arrowRight;
 	public GameObject endText;
+	public GameObject brain;
 	
 	
     void Start()
@@ -39,14 +40,12 @@ public class ScenarioController : MonoBehaviour
     {
 		markerStream.Write("Start_Trial_" + condition);
 		fixationCross.SetActive(true);
-		StartCoroutine(dispCond(condition));        
+		StartCoroutine(DisplayTask(condition));        
     }
 	
 	public void EndTrial()
     {
-		arrowLeft.SetActive(false);
-		arrowRight.SetActive(false);
-		fixationCross.SetActive(false);
+		brain.SetActive(false);
 		
         markerStream.Write("End_of_Trial");
 		
@@ -58,7 +57,7 @@ public class ScenarioController : MonoBehaviour
         else
         {
             condition = blockSequence[round];
-            StartCoroutine(waitAsec());
+            StartCoroutine(NextTrial(condition));
         }        
     }
 	
@@ -69,13 +68,14 @@ public class ScenarioController : MonoBehaviour
     }
 	
 	
-	IEnumerator waitAsec()
+	IEnumerator NextTrial(string condition)
     {
         yield return new WaitForSeconds(3);
         StartTrial(condition);
     }
 	
-	IEnumerator dispCond(string condition)
+
+	IEnumerator DisplayTask(string condition)
     {
 		yield return new WaitForSeconds(2);
 		switch (condition)
@@ -87,7 +87,14 @@ public class ScenarioController : MonoBehaviour
 				arrowLeft.SetActive(true);
                 break;
         }
-		yield return new WaitForSeconds(8);
+		yield return new WaitForSeconds(2);
+		arrowLeft.SetActive(false);
+		arrowRight.SetActive(false);
+		fixationCross.SetActive(false);
+
+		// display feedback
+		brain.SetActive(true);
+		yield return new WaitForSeconds(6);
 		EndTrial();		
     }
 
