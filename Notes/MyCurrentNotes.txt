@@ -16,3 +16,15 @@ Rapid Prototyping (Graz BCI Protocol):
 	session 2 & 3: weight vector was used for presenting FB
 	session 4: without FB -> new weight vector established
 	session 5 & 6: feedback with new weight vector
+	
+	
+## VR Support
+https://valvesoftware.github.io/steamvr_unity_plugin/articles/Quickstart.html
+- install steam
+- install steamVR runtime (1.16.8): https://www.steamvr.com/de/
+- Unity (2019.4.21f1)
+	- install steamVR Unity Plugin (2.7.3 )
+	- also XR plugin??
+	
+## Skybox
+Windows -> Rendering -> Lighting Settings -> Skybox Material
