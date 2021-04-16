@@ -14,10 +14,10 @@ public class ScenarioController : MonoBehaviour
 	public int n_block = 1;                    // number of sequence
     string path = "Assets/Resources/ME_run_";  // path to the sequences
 	
-	public GameObject fixationCross;
+	//public GameObject fixationCross;
 	public GameObject arrowLeft;
 	public GameObject arrowRight;
-	public GameObject endText;
+	//public GameObject endText;
 	public GameObject brain;
 	
 	
@@ -39,13 +39,16 @@ public class ScenarioController : MonoBehaviour
 	void StartTrial(string condition)
     {
 		markerStream.Write("Start_Trial_" + condition);
-		fixationCross.SetActive(true);
+		//fixationCross.SetActive(true);
+		brain.SetActive(true);
 		StartCoroutine(DisplayTask(condition));        
     }
 	
 	public void EndTrial()
     {
 		brain.SetActive(false);
+		arrowLeft.SetActive(false);
+		arrowRight.SetActive(false);
 		
         markerStream.Write("End_of_Trial");
 		
@@ -64,7 +67,7 @@ public class ScenarioController : MonoBehaviour
 	void BlockFinished() 
     {
         markerStream.Write("End_of_Experiment");
-        endText.SetActive(true);
+        //endText.SetActive(true);
     }
 	
 	
@@ -88,12 +91,12 @@ public class ScenarioController : MonoBehaviour
                 break;
         }
 		yield return new WaitForSeconds(2);
-		arrowLeft.SetActive(false);
-		arrowRight.SetActive(false);
-		fixationCross.SetActive(false);
+		// arrowLeft.SetActive(false);
+		// arrowRight.SetActive(false);
+		//fixationCross.SetActive(false);
 
 		// display feedback
-		brain.SetActive(true);
+		//brain.SetActive(true);
 		yield return new WaitForSeconds(6);
 		EndTrial();		
     }
